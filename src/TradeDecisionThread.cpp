@@ -29,8 +29,8 @@ using namespace meteor;
 namespace meteor {
 	namespace core {
 		TradeDecisionThread::MessageProcessor::MessageProcessor(const boost::shared_ptr<TradeDecisionThread>& tdThread) :
-				tdThread(tdThread), packetReader(tdThread->packetReader), securities(tdThread->securities), algo(tdThread->algo), paramStore(
-						tdThread->paramStore) {
+				tdThread(tdThread), packetReader(tdThread->packetReader), paramStore(tdThread->paramStore), algo(tdThread->algo), securities(
+						tdThread->securities) {
 		}
 
 		void TradeDecisionThread::MessageProcessor::operator()(const market_data_message& message) const {
@@ -105,7 +105,7 @@ namespace meteor {
 				const boost::shared_ptr<IRealtimeMarketDataPacketFilter>& packetFilter,
 				const boost::shared_ptr<IRealtimeMarketDataMessageFilter>& messageFilter, const boost::shared_ptr<IAlgo>& algo,
 				const boost::shared_ptr<ParamStore>& paramStore) :
-				packetReader(new PacketReader()), mdPipe(mdPipe), packetFilter(packetFilter), messageFilter(messageFilter), algo(algo), paramStore(paramStore) {
+				packetReader(new PacketReader()), mdPipe(mdPipe), packetFilter(packetFilter), messageFilter(messageFilter), paramStore(paramStore), algo(algo) {
 			memset(securities, 0, SECURITY_MAX * sizeof(Security));
 			isRunning.store(true, memory_order::memory_order_release);
 		}
