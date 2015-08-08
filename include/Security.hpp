@@ -9,6 +9,7 @@
 #define SECURITY_HPP_
 
 #include <CircularBuffer.hpp>
+
 #include <OmdMessage.hpp>
 
 namespace meteor {

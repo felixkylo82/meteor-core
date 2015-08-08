@@ -8,8 +8,6 @@
 #ifndef OMDMESSAGE_HPP_
 #define OMDMESSAGE_HPP_
 
-#include <boost/asio.hpp>
-
 namespace meteor {
 	namespace omd {
 		extern "C" {

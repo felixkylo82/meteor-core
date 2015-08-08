@@ -14,6 +14,9 @@ namespace meteor {
 	namespace core {
 		class IParam {
 		public:
+			IParam() {}
+			virtual ~IParam() {}
+
 			virtual ALGO_ID getAlgoId() const = 0;
 		};
 	}

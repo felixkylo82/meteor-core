@@ -21,7 +21,7 @@ namespace meteor {
 		class IRealtimeMarketDataPacketFilter;
 		class IRealtimeMarketDataMessageFilter;
 		class IAlgo;
-		class IParamStore;
+		class ParamStore;
 
 		class TradeDecisionThread {
 		private:
@@ -29,7 +29,7 @@ namespace meteor {
 			private:
 				const boost::shared_ptr<TradeDecisionThread> tdThread;
 				const boost::shared_ptr<PacketReader> packetReader;
-				const boost::shared_ptr<IParamStore> paramStore;
+				const boost::shared_ptr<ParamStore> paramStore;
 				const boost::shared_ptr<IAlgo> algo;
 				Security* const securities;
 
@@ -50,7 +50,7 @@ namespace meteor {
 			const boost::shared_ptr<MarketDataPipe> mdPipe;
 			const boost::shared_ptr<IRealtimeMarketDataPacketFilter> packetFilter;
 			const boost::shared_ptr<IRealtimeMarketDataMessageFilter> messageFilter;
-			const boost::shared_ptr<IParamStore> paramStore;
+			const boost::shared_ptr<ParamStore> paramStore;
 			const boost::shared_ptr<IAlgo> algo;
 			boost::atomic<bool> isRunning;
 
@@ -59,7 +59,7 @@ namespace meteor {
 
 			TradeDecisionThread(const boost::shared_ptr<MarketDataPipe>& mdPipe, const boost::shared_ptr<IRealtimeMarketDataPacketFilter>& packetFilter,
 					const boost::shared_ptr<IRealtimeMarketDataMessageFilter>& messageFilter, const boost::shared_ptr<IAlgo>& algo,
-					const boost::shared_ptr<IParamStore>& paramStore);
+					const boost::shared_ptr<ParamStore>& paramStore);
 			virtual ~TradeDecisionThread();
 
 			void stop();

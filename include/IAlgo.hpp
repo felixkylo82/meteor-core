@@ -12,6 +12,8 @@ namespace meteor {
 	namespace core {
 		enum ALGO_ID {
 			ALGO_ID_MOCK,
+
+			ALGO_ID_COUNT,
 		};
 
 		class IAlgo {

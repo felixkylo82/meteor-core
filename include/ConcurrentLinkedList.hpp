@@ -23,7 +23,7 @@ namespace meteor {
 				boost::shared_ptr<S> item;
 				boost::atomic<Node<S>*> next;
 
-				Node(const boost::shared_ptr<S>& item) :
+				Node(boost::shared_ptr<S> item = boost::shared_ptr<S>()) :
 						item(item) {
 					next.store(0, boost::memory_order_release);
 				}
@@ -37,14 +37,16 @@ namespace meteor {
 			};
 
 		private:
-			static boost::object_pool<Node<T>> pool;
-
-		private:
+			boost::object_pool<Node<T>> pool;
 			boost::atomic<Node<T>*> head;
 			boost::atomic<Node<T>*> tail;
 
 		public:
-			ConcurrentLinkedList(Node<T>* _head = pool.construct()) {
+			ConcurrentLinkedList() {
+				head.store(pool.construct(), boost::memory_order_release);
+			}
+
+			ConcurrentLinkedList(Node<T>* _head) {
 				head.store(_head, boost::memory_order_release);
 			}
 
@@ -86,6 +88,7 @@ namespace meteor {
 				do {
 					_head = head.load(boost::memory_order_acquire);
 					newHead = _head->next.load(boost::memory_order_acquire);
+					if (0 == newHead) return boost::shared_ptr<T>();
 				} while (head.compare_exchange_weak(_head, newHead));
 				pool.destroy(_head);
 

@@ -13,8 +13,8 @@
 #include <IRealtimeMarketDataPacketFilter.hpp>
 #include <IRealtimeMarketDataMessageFilter.hpp>
 #include <IAlgo.hpp>
-#include <IParamStore.hpp>
 #include <IParam.hpp>
+#include <ParamStore.hpp>
 #include <ConcurrentLinkedList.hpp>
 
 #include <boost/thread/locks.hpp>
@@ -104,7 +104,7 @@ namespace meteor {
 		TradeDecisionThread::TradeDecisionThread(const boost::shared_ptr<MarketDataPipe>& mdPipe,
 				const boost::shared_ptr<IRealtimeMarketDataPacketFilter>& packetFilter,
 				const boost::shared_ptr<IRealtimeMarketDataMessageFilter>& messageFilter, const boost::shared_ptr<IAlgo>& algo,
-				const boost::shared_ptr<IParamStore>& paramStore) :
+				const boost::shared_ptr<ParamStore>& paramStore) :
 				packetReader(new PacketReader()), mdPipe(mdPipe), packetFilter(packetFilter), messageFilter(messageFilter), algo(algo), paramStore(paramStore) {
 			memset(securities, 0, SECURITY_MAX * sizeof(Security));
 			isRunning.store(true, memory_order::memory_order_release);
