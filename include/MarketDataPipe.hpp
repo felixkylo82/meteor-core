@@ -25,7 +25,7 @@ namespace meteor {
 
 		class MarketDataPipe {
 		public:
-			boost::lockfree::spsc_queue<market_data_message, boost::lockfree::capacity<1000000>> queue;
+			boost::lockfree::spsc_queue<market_data_message, boost::lockfree::capacity<10000>> queue;
 
 			// No encapsulation
 			// Let the programmers knows what they are doing
